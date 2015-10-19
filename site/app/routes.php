@@ -3,7 +3,7 @@
 Route::get('/', function(){
 	$service_year = array(""=>"Service Year");
 	for ($i=2010; $i < 2021; $i++) { 
-		array_push($service_year, $i);
+		$service_year[$i] = $i;
 	}
 	$main = View::make('home',["service_year" => $service_year]);
 	return View::make('main',["title"=>"The Official Corperlife Website","description"=>"Welcome to the Official Corperlife Site. We help Corpers Maximise their NYSC Experience and also get them Started on their Careers.","keywords"=>"Corperlife, Youth Corpers, NYSC batch","main"=>$main]);
@@ -111,7 +111,24 @@ Route::group(['prefix' => 'checklist-guide', 'before' => 'auth'], function () {
 });
 
 Route::group(['prefix' => 'corper-admin', 'before' => array('auth','admin')], function () {
-	Route::get('/', 'UserController@getUsers');
+
+	Route::get('/', 'AdminController@getUsers');
+	Route::get('/users', 'AdminController@getUsers');
+	Route::get('/duplicate_users', 'AdminController@getDuplicateUsers');
+	Route::get('/corpers/stats', 'AdminController@getCorpers');
+
+	Route::get('/forums', 'AdminController@getForums');
+	Route::get('/forumTopics', 'AdminController@getTopics');
+	Route::get('/deletetopic/{id}', 'AdminController@DeleteTopics');
+
+
+	Route::get('/knowledge_stats', 'AdminController@knowledge_bank');
+
+	Route::get('/cvs', 'AdminController@cv_data');
+	Route::get('/breakdown', 'AdminController@cv_members_breakdown');
+
+
+
 });
 
 Route::group(['prefix' => 'forum', 'before' => 'auth'], function () {

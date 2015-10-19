@@ -306,9 +306,4 @@ class UserController extends BaseController {
         }
     }
 
-    public function getUsers(){
-        $users = User::orderBy('id','DESC')->get();
-        $main = View::make('admin.users',["users"=>$users]);
-        return View::make('main',["title"=>"Corperlife | All Users","description"=>"","keywords"=>"","main"=>$main]);
-    }
 }

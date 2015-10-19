@@ -167,7 +167,7 @@ class UserprofileController extends BaseController {
         $user = User::find(Auth::id());
         $service_year = array(""=>"Service Year");
         for ($i=2010; $i < 2021; $i++) { 
-            array_push($service_year, $i);
+            $service_year[$i] = $i;
         }
         return View::make('main',array("main"=>View::make('profile.nysc-details',["service_year"=>$service_year]),"title"=>$title,"description"=>$description,"keywords"=>$keywords));
     }

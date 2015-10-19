@@ -1,3 +1,4 @@
+@include('admin.top')
 <div class="container">
 	<table class="table">
 		<thead>
