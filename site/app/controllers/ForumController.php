@@ -13,6 +13,14 @@ class ForumController extends BaseController {
         $topics = DB::table('topics')->join('categories','topics.category_id','=','categories.id')->join('users','topics.user_id','=','users.id')->select('topics.*','categories.category_name','users.firstname','users.profile_pic')->orderBy('topics.id','desc')->paginate(12);
         $this->layout->main = View::make("profile.pi.forum",array("categories"=>$category,"topics"=>$topics,"category_get"=>$category_get));
     }
+    public function generalForums(){
+        $category = DB::table('categories')->lists('category_name','id');
+        $category_get = DB::table('categories')->select('category_name','id')->get();       
+        $topics = DB::table('topics')->join('categories','topics.category_id','=','categories.id')->join('users','topics.user_id','=','users.id')->select('topics.*','categories.category_name','users.firstname','users.profile_pic')->orderBy('topics.id','desc')->paginate(12);
+        $main = View::make('generalForums',["categories"=>$category,"topics"=>$topics,"category_get"=>$category_get]);
+        return View::make('main',["title"=>"The Official Corperlife Website","description"=>"Welcome to the Official Corperlife Site. We help Corpers Maximise their NYSC Experience and also get them Started on their Careers.","keywords"=>"Corperlife, Youth Corpers, NYSC batch","main"=>$main]);
+
+    }
      public function postSearch(){
         $this->layout->title = 'NYSC Corpers Forum | Search '.Input::get('topic_q');
         $this->layout->description = 'Meet and discuss with other corpers in the Forum. Help each other get the best out of the NYSC experience.';
@@ -38,7 +46,22 @@ class ForumController extends BaseController {
 
         $this->layout->main = View::make("profile.pi.forum-page",array("categories"=>$category,"topic"=>$topic,"replies"=>$replies,"category_get"=>$category_get));
     }
+    public function getForumContent($id){
+        $topic = DB::table('topics')->join('categories','topics.category_id','=','categories.id')->join('users','topics.user_id','=','users.id')->select('topics.*','categories.category_name','users.firstname','users.profile_pic')->where('topics.id',$id)->first();
 
+        $this->layout->title = 'NYSC Corpers Forum | '.$topic->title;
+        $this->layout->description = 'Meet and discuss with other corpers in the Forum. Help each other get the best out of the NYSC experience.';
+        $this->layout->keywords = 'Forum, NYSC experience, Corpers';
+        $this->layout->top_active = 4;
+        $category = DB::table('categories')->lists('category_name','id');
+
+        $category_get = DB::table('categories')->select('category_name','id')->get();
+        $replies = DB::table('replies')->join('users','replies.user_id','=','users.id')->where('replies.topic_id',$id)->select('replies.reply','replies.created_at','users.firstname','users.profile_pic')->get();
+
+
+        $main = View::make('forumContent',["categories"=>$category,"replies"=>$replies,"topic"=>$topic,"category_get"=>$category_get]);
+        return View::make('main',["title"=>"The Official Corperlife Website","description"=>"Welcome to the Official Corperlife Site. We help Corpers Maximise their NYSC Experience and also get them Started on their Careers.","keywords"=>"Corperlife, Youth Corpers, NYSC batch","main"=>$main]);
+    }
     public function getcontentpage(){
         $this->layout->title = 'NYSC Corpers Forum | Topics';
         $this->layout->description = 'Meet and discuss with other corpers in the Forum. Help each other get the best out of the NYSC experience.';

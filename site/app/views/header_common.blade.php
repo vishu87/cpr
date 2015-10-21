@@ -16,8 +16,10 @@
       <ul>
         <li class="close-button"><a href="{{url('/')}}" class="close-menu"><i class="fa fa-remove"></i></a></li>
         <li><a href="{{url('/')}}">Home</a></li>                     
+        <li><a href="{{url('/generalForums')}}">Forums</a></li>   
         <li><a href="{{url('/ourstory')}}">Our Story</a></li>
-         <li><a href="{{url('/faq')}}">FAQ</a></li>    
+        <li><a href="{{url('/faq')}}">FAQ</a></li>
+
         <!-- BEGIN TOP SEARCH -->
         @if(Auth::check())
         <li>
@@ -28,7 +30,7 @@
                 {{HTML::image(Auth::user()->profile_pic,'logo',array("class"=>"img-circle hidden-xs hidden-sm pull-right user-top-image"))}}
               @endif
             <span class="username">{{Auth::user()->firstname}}</span></a>
-        </li>
+        </li> 
           @if(Auth::user()->priv == 1)
           <li>
               <a href="{{URL('/corper-admin')}}" style="color:#1caf9a">

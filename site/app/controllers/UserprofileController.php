@@ -10,6 +10,7 @@ class UserprofileController extends BaseController {
         $this->layout->keywords = 'the Dashboard, corpers, corperlife profiles';
         $this->layout->top_active = 2;
         $states = DB::table('states')->lists('state','id');
+        $states = [""=>"---Please Select---"] + $states;
         $user = User::find(Auth::id());
         if($user->profile_pic == '') $user->profile_pic = 'assets/avatars/default.png';
         $this->layout->main = View::make("profile.pi.index",array("states"=>$states,"user"=>$user));

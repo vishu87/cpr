@@ -7,7 +7,7 @@
           {{ Form::label('', 'First Name', array('class' => 'col-md-3 control-label')) }}
           <div class="col-md-9">                                     
             {{Form::text('firstname',$user->firstname,array("class"=>"form-control", "placeholder"=>"Enter First Name"))}}
-            <span>{{$errors->first('firstname','Please provide your first name')}}</span> 
+            <span class="error">{{$errors->first('firstname','Please provide your first name')}}</span> 
           </div>
         </div>
         <div class="form-group">
@@ -20,14 +20,14 @@
           {{ Form::label('', 'Profile Name', array('class' => 'col-md-3 control-label')) }}                    
           <div class="col-md-9">
             {{Form::text('profilename',$user->profilename,array("class"=>"form-control", "placeholder"=>"Enter Profile Name"))}}
-            <span>{{$errors->first('profilename')}}</span>
+            <span class="error">{{$errors->first('profilename')}}</span>
           </div>
         </div>
           <div class="form-group">
           {{ Form::label('', 'Sex', array('class' => 'col-md-3 control-label')) }}                 
           <div class="col-md-9">
             {{Form::select('sex',array("0"=>"Select","1"=>"Male","2"=>"Female"),$user->sex,array("class"=>"form-control"))}}
-            <span>{{$errors->first('sex')}}</span>
+            <span class="error">{{$errors->first('sex')}}</span>
           </div>
         </div>
          <div class="form-group">

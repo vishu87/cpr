@@ -1,5 +1,5 @@
 @include('admin.top')
-<div class="container" style="margin-top:40px">
+<div class="container data-corper">
 	<div class="portlet box blue">
 		<div class="portlet-title">
 			<div class="caption">

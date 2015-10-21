@@ -32,21 +32,21 @@
                       <label class="col-md-2 control-label">Name</label>
                       <div class=" col-md-10">
                         {{Form::text('name','',array("class"=>"form-control", "placeholder"=>"Your name"))}}
-                        <span>{{$errors->first('name','Please provide your name')}}</span> 
+                        <span class="error">{{$errors->first('name','Please provide your name')}}</span> 
                       </div>
                     </div>
                     <div class="form-group">
                       <label class="col-md-2 control-label">Email Address</label>
                       <div class=" col-md-10">
                         {{Form::text('email','',array("class"=>"form-control", "placeholder"=>"Your email"))}}
-                        <span>{{$errors->first('email')}}</span> 
+                        <span class="error">{{$errors->first('email')}}</span> 
                       </div>
                     </div>
                     <div class="form-group">
                       <label class="col-md-2 control-label">Question</label>
                       <div class=" col-md-10">
                         {{Form::textarea('question','',array("class"=>"form-control", "placeholder"=>"Your question"))}}
-                        <span>{{$errors->first('question','Please enter your question')}}</span> 
+                        <span class="error">{{$errors->first('question','Please enter your question')}}</span> 
                       </div>
                     </div>
                     <div class="form-group" style="display:none">

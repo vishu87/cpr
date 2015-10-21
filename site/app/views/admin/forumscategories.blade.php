@@ -6,27 +6,28 @@
 			{{Session::get('success')}}
 		</div>
 	@endif
-	<table class="table" style="margin-top:30px">
-		<thead>
-			<tr>
-				<th>SN</th>
-				<th>Topic Title</th>
-				<th>Category</th>
-				<th>Delete</th>
-				
-			</tr>
-		</thead>
-		<tbody>
-			<?php $sn = 0 ?>
-			@foreach($topics as $topic)
+	<div class="row main-data">
+		<table class="table " >
+			<thead>
 				<tr>
-					<td>{{++$sn}}</td>
-					<td>{{$topic->title}}</td>
-					<td>{{$topic->category_name}}</td>
-					<td><a href="{{url('corper-admin/deletetopic/'.$topic->id)}}">Delete</a></td>
-					
+					<th>SN</th>
+					<th>Topic Title</th>
+					<th>Category</th>
+					<th>Delete</th>
 				</tr>
-			@endforeach
-		</tbody>
-	</table>
+			</thead>
+			<tbody>
+				<?php $sn = 0 ?>
+				@foreach($topics as $topic)
+					<tr>
+						<td>{{++$sn}}</td>
+						<td>{{$topic->title}}</td>
+						<td>{{$topic->category_name}}</td>
+						<td><a href="{{url('corper-admin/deletetopic/'.$topic->id)}}">Delete</a></td>
+					</tr>
+				@endforeach
+			</tbody>
+		</table>
+	</div>
+	
 </div>

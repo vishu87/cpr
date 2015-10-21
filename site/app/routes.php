@@ -8,16 +8,19 @@ Route::get('/', function(){
 	$main = View::make('home',["service_year" => $service_year]);
 	return View::make('main',["title"=>"The Official Corperlife Website","description"=>"Welcome to the Official Corperlife Site. We help Corpers Maximise their NYSC Experience and also get them Started on their Careers.","keywords"=>"Corperlife, Youth Corpers, NYSC batch","main"=>$main]);
 });
-App::missing(function($exception)
-{
-	$main = View::make('404');
-    return View::make('main',["title"=>"404 error Corperlife","description"=>"Welcome to the Official Corperlife Site. We help Corpers Maximise their NYSC Experience and also get them Started on their Careers.","keywords"=>"Corperlife, Youth Corpers, NYSC batch","main"=>$main]);
-});
-App::error(function(Exception $exception, $code) 
-{
-   $main = View::make('404');
-    return View::make('main',["title"=>"404 error Corperlife","description"=>"Welcome to the Official Corperlife Site. We help Corpers Maximise their NYSC Experience and also get them Started on their Careers.","keywords"=>"Corperlife, Youth Corpers, NYSC batch","main"=>$main]);
-});
+Route::get('/generalForums','ForumController@generalForums');
+Route::get('/generalForum/forum-page/{id}','ForumController@getForumContent');
+
+// App::missing(function($exception)
+// {
+// 	$main = View::make('404');
+//     return View::make('main',["title"=>"404 error Corperlife","description"=>"Welcome to the Official Corperlife Site. We help Corpers Maximise their NYSC Experience and also get them Started on their Careers.","keywords"=>"Corperlife, Youth Corpers, NYSC batch","main"=>$main]);
+// });
+// App::error(function(Exception $exception, $code) 
+// {
+//    $main = View::make('404');
+//     return View::make('main',["title"=>"404 error Corperlife","description"=>"Welcome to the Official Corperlife Site. We help Corpers Maximise their NYSC Experience and also get them Started on their Careers.","keywords"=>"Corperlife, Youth Corpers, NYSC batch","main"=>$main]);
+// });
 Route::get('/logout', function(){
 	Auth::logout();
 	return Redirect::to('/');
@@ -112,7 +115,7 @@ Route::group(['prefix' => 'checklist-guide', 'before' => 'auth'], function () {
 
 Route::group(['prefix' => 'corper-admin', 'before' => array('auth','admin')], function () {
 
-	Route::get('/', 'AdminController@getUsers');
+	Route::get('/', 'AdminController@getCorpers');
 	Route::get('/users', 'AdminController@getUsers');
 	Route::get('/duplicate_users', 'AdminController@getDuplicateUsers');
 	Route::get('/corpers/stats', 'AdminController@getCorpers');

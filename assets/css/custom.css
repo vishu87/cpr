@@ -292,6 +292,30 @@
 .hidden {
   display: none !important;
 }
+.main-data{
+	margin: 0 60px;
+}
+.top-menu{
+	padding-left:75px !important; 
+}
+/*******ADMIN PANEL*********/
+.data-container{
+	background-color:black;
+	margin-bottom:10px
+}
+.data-corper{
+	margin-top:10px;
+}
+.table-head{
+	background-color:#4B8DF8
+}
+.table-corper{
+	padding: 0 5px;
+}
+.white_pill{
+	background-color: #FFF;
+	color: #000;
+}
 /**************** less than 768px  *****************/
 @media (max-width: 480px) {
     .nav-tabs>li {
