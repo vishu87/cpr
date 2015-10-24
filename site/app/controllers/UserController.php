@@ -86,7 +86,7 @@ class UserController extends BaseController {
             return Redirect::to('/profile');
         } else {
             $main = View::make('login');
-            return View::make('main',["title"=>"Corper Login","description"=>"Corpers access to their corperlife profile, CVs and other very useful resources. login and begin your experience.","keywords"=>"corper resources, login, Corper profile,","main"=>$main]);
+            return View::make('main',["top_active"=>0,"title"=>"Corper Login","description"=>"Corpers access to their corperlife profile, CVs and other very useful resources. login and begin your experience.","keywords"=>"corper resources, login, Corper profile,","main"=>$main]);
         }
         
     }

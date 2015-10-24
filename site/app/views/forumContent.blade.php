@@ -30,17 +30,23 @@
                 <div class="portlet-body form">
                   {{Form::open(array("url"=>"/forum/forum-page/savereply/".$topic->id,"method" => "POST","role"=>"form"))}}                    
                     <div class="form-group" style="border-top:1px dashed #CCC; margin-top:15px; padding-top:10px">
-                      <h4>Reply</h4>
+                      
                       @if(Session::has('success'))
                         <div class="alert alert-success">
                           <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
                           <strong>Success!</strong> Your reply has been added.
                         </div>
                       @endif
-                        {{Form::textarea('reply','',array("class"=>"form-control", "placeholder"=>"Your reply","style"=>"height:80px"))}}            
+                      @if(Auth::user())
+                      <h4>Reply</h4>
+                        {{Form::textarea('reply','',array("class"=>"form-control", "placeholder"=>"Your reply","style"=>"height:80px"))}}    
+                       
                     </div>
                     <div>
                     <button type="submit" class="btn green">Submit</button>
+                     @else
+                        <span><a href="{{url('/login')}}"><h4>Please Login to Reply On This Post</h4></a></span>        
+                        @endif
                     </div>
                   {{Form::close()}}
                 </div>  
@@ -67,6 +73,7 @@
           </div>
           <!-- END PORTLET-->
         </div>  
+          @include('profile.pi.category-tab')
 
       </div>
       <!-- END PAGE CONTENT INNER -->

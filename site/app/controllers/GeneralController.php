@@ -4,7 +4,7 @@ class GeneralController extends BaseController {
     
     public function faq(){
         $main = View::make('faq');
-        return View::make('main',["title"=>"Frequently asked questions","description"=>"Get any questions regarding the Corperlife website answered here. Corpers, login to the dashboard to get NYSC related questions answered.","keywords"=>"Questions, answers, corperlife FAQ","main"=>$main]);
+        return View::make('main',["top_active"=>3,"title"=>"Frequently asked questions","description"=>"Get any questions regarding the Corperlife website answered here. Corpers, login to the dashboard to get NYSC related questions answered.","keywords"=>"Questions, answers, corperlife FAQ","main"=>$main]);
     }
 
     public function faqsubmit(){

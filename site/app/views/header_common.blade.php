@@ -15,15 +15,15 @@
     <div class="header-navigation pull-right font-transform-inherit">
       <ul>
         <li class="close-button"><a href="{{url('/')}}" class="close-menu"><i class="fa fa-remove"></i></a></li>
-        <li><a href="{{url('/')}}">Home</a></li>                     
-        <li><a href="{{url('/generalForums')}}">Forums</a></li>   
-        <li><a href="{{url('/ourstory')}}">Our Story</a></li>
-        <li><a href="{{url('/faq')}}">FAQ</a></li>
+        <li class="@if ($top_active==1) active @endif"><a href="{{url('/')}}">Home</a></li>                     
+        <li class="@if ($top_active==4) active @endif"><a href="{{url('/forum')}}">Forums</a></li>   
+        <li class="@if ($top_active==2) active @endif"><a href="{{url('/ourstory')}}">Our Story</a></li>
+        <li class="@if ($top_active==3) active @endif"><a href="{{url('/faq')}}">FAQ</a></li>
 
         <!-- BEGIN TOP SEARCH -->
         @if(Auth::check())
-        <li>
-            <a href="{{URL('/profile')}}" style="color:#1caf9a">
+        <li class="@if ($top_active==5) active @endif">
+            <a href="{{URL('/profile')}}" style="color:">
               @if(Auth::user()->profile_pic == '')
                 {{HTML::image('assets/avatars/default.png','logo',array("class"=>"img-circle hidden-xs hidden-sm pull-right user-top-image"))}}
               @else
@@ -32,8 +32,8 @@
             <span class="username">{{Auth::user()->firstname}}</span></a>
         </li> 
           @if(Auth::user()->priv == 1)
-          <li>
-              <a href="{{URL('/corper-admin')}}" style="color:#1caf9a">
+          <li class="@if ($top_active==6) active @endif">
+              <a href="{{URL('/corper-admin')}}" style="color:">
                 Admin Panel
               </a>
           </li>

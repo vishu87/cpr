@@ -1,4 +1,5 @@
-@include('profile.adv')
+<div class="container">
+  @include('profile.adv')
   <div class="page-content" style="padding-top:0px; background: #fff;">
     
       <!-- BEGIN PAGE CONTENT INNER -->
@@ -47,4 +48,5 @@
       @include('profile.pi.category-tab')
     </div>
       <!-- END PAGE CONTENT INNER -->
+  </div>
   </div>

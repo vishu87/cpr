@@ -15,6 +15,7 @@ class CVController extends BaseController {
      public function getcareer(){
         $user_id = Auth::id();
         $this->layout->title = 'Career Center Document';
+        $this->layout->top_active =6;
         $this->layout->main = View::make('cvbuilder.career-doc');         
     }
 

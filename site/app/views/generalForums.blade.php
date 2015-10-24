@@ -45,6 +45,7 @@
             </div> 
           </div>
         </div>
+          @include('profile.pi.category-tab')
         
       </div>
       <!-- END PAGE CONTENT INNER -->

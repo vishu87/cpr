@@ -4,11 +4,13 @@ class UserprofileController extends BaseController {
     
     protected $layout = 'profile.layout';
 
+
     public function getProfile(){
         $this->layout->title = 'Corpers Profile';
         $this->layout->description = 'NYSC corpers can personalise their experience by logging into the Dashboard and editing their Corperlife profiles.';
         $this->layout->keywords = 'the Dashboard, corpers, corperlife profiles';
-        $this->layout->top_active = 2;
+        $this->layout->top_active = 5;
+        $this->layout->top_active_profile = 2;
         $states = DB::table('states')->lists('state','id');
         $states = [""=>"---Please Select---"] + $states;
         $user = User::find(Auth::id());
@@ -21,7 +23,8 @@ class UserprofileController extends BaseController {
         $this->layout->title = 'Corpers Resources';
         $this->layout->description = 'These are official Corperlife Tips and guides provided to help corpers through the NYSC experience.';
         $this->layout->keywords = 'NYSC Guides, NYSC tips, Corpers';
-        $this->layout->top_active = 3;
+        $this->layout->top_active = 5;
+        $this->layout->top_active_profile = 3;
         $this->layout->main = View::make("profile.pi.checklist");
     }
 
@@ -30,6 +33,7 @@ class UserprofileController extends BaseController {
         $this->layout->description = 'Visit the Corperlife knowledge bank to get all NYSC related questions answered.';
         $this->layout->keywords = 'NYSC, questions, knowledge bank';
         $this->layout->top_active = 5;
+        $this->layout->top_active_profile = 4;
         $categories = DB::table('qus_category')->get();
         $questions = DB::table('member_qus')->orderBy('member_qus.category_id','asc')->get();
         $terms = DB::table('terms_definitions')->get();
@@ -50,7 +54,8 @@ class UserprofileController extends BaseController {
         $this->layout->title = 'Your Saved CVs';
         $this->layout->description = 'Find the CVs/resumes you created using the Corperlife CV builder here.';
         $this->layout->keywords = 'CV builder, CVs, corperlife';
-        $this->layout->top_active = 6;
+        $this->layout->top_active = 5;
+        $this->layout->top_active_profile = 5;
         $cvs = Cv::where('user_id',Auth::id())->orderBy('created_at','DESC')->get();
         $this->layout->main = View::make("profile.pi.cv-page",['cvs'=>$cvs]);
     }
@@ -163,7 +168,7 @@ class UserprofileController extends BaseController {
         $title = 'Corpers Profile | NYSC Details';
         $description = 'NYSC corpers can personalise their experience by logging into the Dashboard and editing their Corperlife profiles';
         $keywords = 'the Dashboard, corpers, corperlife profiles';
-        $this->layout->top_active = 2;
+        $this->layout->top_active = 5;
         $states = DB::table('states')->lists('state','id');
         $user = User::find(Auth::id());
         $service_year = array(""=>"Service Year");
@@ -198,7 +203,8 @@ class UserprofileController extends BaseController {
         $this->layout->title = 'Corpers Profile | Change password';
         $this->layout->description = 'NYSC corpers can personalise their experience by logging into the Dashboard and editing their Corperlife profiles.';
         $this->layout->keywords = 'the Dashboard, corpers, corperlife profiles';
-        $this->layout->top_active = 7;
+        $this->layout->top_active = 5;
+        $this->layout->top_active_profile = 7;
         $user = User::find(Auth::id());
         if($user->profile_pic == '') $user->profile_pic = 'assets/avatars/default.png';
         $this->layout->main = View::make("profile.pi.change-password",array("user"=>$user));

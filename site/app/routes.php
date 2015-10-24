@@ -6,11 +6,8 @@ Route::get('/', function(){
 		$service_year[$i] = $i;
 	}
 	$main = View::make('home',["service_year" => $service_year]);
-	return View::make('main',["title"=>"The Official Corperlife Website","description"=>"Welcome to the Official Corperlife Site. We help Corpers Maximise their NYSC Experience and also get them Started on their Careers.","keywords"=>"Corperlife, Youth Corpers, NYSC batch","main"=>$main]);
+	return View::make('main',["title"=>"The Official Corperlife Website","description"=>"Welcome to the Official Corperlife Site. We help Corpers Maximise their NYSC Experience and also get them Started on their Careers.","keywords"=>"Corperlife, Youth Corpers, NYSC batch","top_active"=>1,"main"=>$main]);
 });
-Route::get('/generalForums','ForumController@generalForums');
-Route::get('/generalForum/forum-page/{id}','ForumController@getForumContent');
-
 // App::missing(function($exception)
 // {
 // 	$main = View::make('404');
@@ -69,7 +66,7 @@ Route::get('/whycorperlife', function(){
 });
 Route::get('/ourstory', function(){
 	$main = View::make('ourstory');
-	return View::make('main',["title"=>"The Corperlife Startup Story","description"=>"Thinking about starting company in Nigeria?  Check out the Corperlife story, learn and get inspired. We’ll keep adding as we grow.","keywords"=>"starting company, Corperlife, story","main"=>$main]);
+	return View::make('main',["title"=>"The Corperlife Startup Story","description"=>"Thinking about starting company in Nigeria?  Check out the Corperlife story, learn and get inspired. We’ll keep adding as we grow.","keywords"=>"starting company, Corperlife, story","top_active"=>2,"main"=>$main]);
 });
 
 Route::get('/career-center', function(){
@@ -134,7 +131,7 @@ Route::group(['prefix' => 'corper-admin', 'before' => array('auth','admin')], fu
 
 });
 
-Route::group(['prefix' => 'forum', 'before' => 'auth'], function () {
+Route::group(['prefix' => 'forum'], function () {
 	Route::get('/', 'ForumController@getForum');
 	Route::post('/savetopic', 'ForumController@postSaveTopic');
 	Route::get('/category/{id}', 'ForumController@getcategory');

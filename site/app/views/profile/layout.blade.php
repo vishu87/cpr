@@ -132,29 +132,25 @@
             </div>
               <div class="side-menu">
                 <ul>
-                  <li @if($top_active == 2)class="active start" @else class="start" @endif;>
+                  <li @if($top_active_profile == 2)class="active start" @else class="start" @endif;>
                    <a href="{{url('/profile')}}">Edit Profile
                     <span class="selected"></span></a>
                   </li>
                   
-                  <li @if($top_active == 4)class="active"@endif;>
-                   <a href="{{url('/forum')}}">Forum
-                    <span class="selected"></span></a>
-                  </li>
-                  <li @if($top_active == 3)class="active"@endif;>
+                  <li @if($top_active_profile == 3)class="active"@endif;>
                    <a href="{{url('/checklist-guide')}}">Resources
                     <span class="selected"></span></a>
                   </li>
-                  <li @if($top_active == 5)class="active"@endif;>
+                  <li @if($top_active_profile == 4)class="active"@endif;>
                    <a href="{{url('/knowledge')}}">Knowledge Bank
                     <span class="selected"></span></a>
                   </li>
-                  <li @if($top_active == 6)class="active"@endif;>
+                  <li @if($top_active_profile == 5)class="active"@endif;>
                    <a href="{{url('/cv-page')}}">My CVs
                     <span class="selected"></span></a>
                   </li>
                   @if(empty(Auth::user()->facebook_id))
-                     <li @if($top_active == 7)class="active"@endif;>
+                     <li @if($top_active_profile == 7)class="active"@endif;>
                      <a href="{{url('/profile/change-password')}}">Change Password<span class="selected"></span></a>
                     </li>
                   @endif

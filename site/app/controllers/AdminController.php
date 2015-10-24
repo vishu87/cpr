@@ -5,6 +5,7 @@ class AdminController extends BaseController {
         $this->layout->title = "User List";
         $this->layout->description = "";
         $this->layout->keywords = "";
+        $this->layout->top_active =6;
         $users = User::orderBy('id','DESC')->get();
         $this->layout->main = View::make('admin.users',["users"=>$users,"main_tab"=>1,"sub_tab"=>2,"cat"=>"corper"]);
     }
@@ -12,6 +13,7 @@ class AdminController extends BaseController {
     	$this->layout->title = "Corper Stats";
         $this->layout->description = "";
         $this->layout->keywords = "";
+        $this->layout->top_active =6;
         $alluser=User::get();
         $user=User::where('password',"-1")->get();
         $fbuser=count($user);
@@ -37,6 +39,7 @@ class AdminController extends BaseController {
         $this->layout->title = "Duplicate Users";
         $this->layout->description = "";
         $this->layout->keywords = "";
+        $this->layout->top_active =6;
         $duplicate=DB::table('users')->groupBy('username')->havingRaw('count(*) > 1')->get();
         $count=count($duplicate);
         $this->layout->main = View::make('admin.duplicateuser',["main_tab"=>1,"sub_tab"=>3,"count"=>$count,"cat"=>"corper"]);
@@ -45,6 +48,7 @@ class AdminController extends BaseController {
         $this->layout->title = "Forums";
         $this->layout->description = "";
         $this->layout->keywords = "";
+        $this->layout->top_active =6;
         $topics=DB::table('topics')->get();
         $topics_count=count($topics);
         $categories=DB::table('categories')->get();
@@ -57,6 +61,7 @@ class AdminController extends BaseController {
         $this->layout->title = "Forums Categories";
         $this->layout->description = "";
         $this->layout->keywords = "";
+        $this->layout->top_active =6;
         $topics=DB::table('topics')->Select('topics.*','categories.category_name')->join('categories','topics.category_id','=','categories.id')->get();
         $this->layout->main = View::make('admin.forumscategories',['topics'=>$topics,"main_tab"=>2,"sub_tab"=>2,"cat"=>"forum"]);
     }
@@ -68,6 +73,7 @@ class AdminController extends BaseController {
         $this->layout->title = "Knowledge Bank";
         $this->layout->description = "";
         $this->layout->keywords = "";
+        $this->layout->top_active =6;
         $total_que=DB::table('member_qus')->get();
         $count=count($total_que);
         $this->layout->main = View::make('admin.knowledgebank',['count'=>$count,"main_tab"=>3,"sub_tab"=>1,"cat"=>"k_bank"]);
@@ -77,6 +83,7 @@ class AdminController extends BaseController {
         $this->layout->title = "CV Page";
         $this->layout->description = "";
         $this->layout->keywords = "";
+        $this->layout->top_active =6;
         $cvs=DB::table('cvs')->get();
         $total=count($cvs);
         $cvs_nonmember=DB::table('cvs')->where('user_id','=',0)->get();
