@@ -47,6 +47,7 @@
     @include('header_common')
 
     {{$main}}
+    
     @include('footer_common')
     <script type="text/javascript">
      var base_url = '{{URL::to('/')}}';

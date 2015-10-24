@@ -54,7 +54,7 @@
         </div>
         {{Form::close()}}
         @else
-        <h5><a href="{{url('/')}}">Please Login or Sign-Up to Create New Topics</a></h5>
+        <h4>Please <a href="{{url('/login')}}">Login</a> or <a href="{{url('/')}}">Sign-up</a> to Reply to create a new topic</a></h4>
         @endif
     </div>
   </div>

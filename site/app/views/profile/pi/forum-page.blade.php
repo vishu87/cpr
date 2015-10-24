@@ -44,7 +44,7 @@
                 </div>
               {{Form::close()}}
               @else
-                <h5><a href="{{url('/')}}">Please Login or Sign-up to Reply to this post</a></h5>
+                <h4>Please <a href="{{url('/login')}}">Login</a> or <a href="{{url('/')}}">Sign-up</a> to Reply to this post</a></h4>
                  @endif
               </div> 
              
@@ -72,4 +72,5 @@
      @include('profile.pi.category-tab')   
     </div>
   </div>
+</div>
 </div>

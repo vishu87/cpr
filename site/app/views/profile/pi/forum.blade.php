@@ -38,7 +38,7 @@
             @if(sizeof($topics) == 0)
               <h3>Sorry, no topics found.</h3>
             @else
-              <div class="pull-right">
+              <div class="" style="margin-bottom:20px; text-align:center">
                 {{ $topics->links(); }}
               </div>
             @endif
@@ -50,3 +50,4 @@
       <!-- END PAGE CONTENT INNER -->
   </div>
   </div>
+</div>

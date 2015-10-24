@@ -84,49 +84,54 @@ class ForumController extends BaseController {
         $this->layout->main = View::make("profile.pi.forum",array("categories"=>$category,"topics"=>$topics,"category_get"=>$category_get));
     }
       public function postSaveTopic(){
-        $cre = [
-            'category_id' => Input::get('category'),
-            'title' => Input::get('title'),         
-            'content' => Input::get('content')            
-        ];
-        $rules = [
-            'category_id' => 'required',
-            'title' => 'required',   
-            'content' => 'required'   
-        ];
-        $validator = Validator::make($cre,$rules);
+        if(Auth::check()){
+            $cre = [
+                'category_id' => Input::get('category'),
+                'title' => Input::get('title'),         
+                'content' => Input::get('content')            
+            ];
+            $rules = [
+                'category_id' => 'required',
+                'title' => 'required',   
+                'content' => 'required'   
+            ];
+            $validator = Validator::make($cre,$rules);
 
-        if($validator->passes()){
-            $topic = new Topic;
-            $topic->user_id =Auth::id(); 
-            $topic->category_id = Input::get('category');
-            $topic->title =  Input::get('title');
-            $topic->content =  Input::get('content');
-            $topic->save();
-            return Redirect::to('/forum/'.$topic->topic_id)->with('success','Topic is successfully added');
-         }else {
-            return Redirect::Back()->withErrors($validator)->withInput();
+            if($validator->passes()){
+                $topic = new Topic;
+                $topic->user_id =Auth::id(); 
+                $topic->category_id = Input::get('category');
+                $topic->title =  Input::get('title');
+                $topic->content =  Input::get('content');
+                $topic->save();
+                return Redirect::to('/forum/'.$topic->topic_id)->with('success','Topic is successfully added');
+             }else {
+                return Redirect::Back()->withErrors($validator)->withInput();
+            }
         }
     }
     public function postSaveReply($topic_id){
-        $cre = [
-            'reply' => Input::get('reply')            
-        ];
-        $rules = [
-            'reply' => 'required'   
-        ];
-        $validator = Validator::make($cre,$rules);
+        if(Auth::check()){
 
-        if($validator->passes()){
-            $blog = new Blog;
-            $blog->user_id =Auth::id(); 
-            $blog->topic_id = $topic_id ;
-            $blog->reply = Input::get('reply');
-            $blog->save();
-            return Redirect::Back()->with('success','gfhfhfh');
-                      
-         }else {
-            return Redirect::Back()->withErrors($validator)->withInput();
+            $cre = [
+                'reply' => Input::get('reply')            
+            ];
+            $rules = [
+                'reply' => 'required'   
+            ];
+            $validator = Validator::make($cre,$rules);
+
+            if($validator->passes()){
+                $blog = new Blog;
+                $blog->user_id =Auth::id(); 
+                $blog->topic_id = $topic_id ;
+                $blog->reply = Input::get('reply');
+                $blog->save();
+                return Redirect::Back()->with('success','gfhfhfh');
+                          
+             }else {
+                return Redirect::Back()->withErrors($validator)->withInput();
+            }
         }
     }
 }    
